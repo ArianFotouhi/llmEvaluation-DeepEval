@@ -10,7 +10,7 @@ Install the `deepeval` library:
 
 ```bash
 !pip install -q deepeval
-```
+
 # Metrics
 
 ## 1. Bias Metric
@@ -33,6 +33,45 @@ print(metric.score)
 print(metric.reason)
 ```
 
+# 2. Correctness (GEval) Metric
+
+This metric ensures the factual correctness of responses, emphasizing detail and accuracy.
+
+## Code Example
+
+```python
+from deepeval.metrics import GEval
+from deepeval.test_case import LLMTestCaseParams, LLMTestCase
+
+# Define the correctness metric with evaluation steps
+correctness_metric = GEval(
+    name="Correctness",
+    evaluation_steps=[
+        "Ensure factual correctness of the information.",
+        "Penalize omission of details."
+    ],
+    evaluation_params=[
+        LLMTestCaseParams.INPUT,
+        LLMTestCaseParams.ACTUAL_OUTPUT,
+        LLMTestCaseParams.EXPECTED_OUTPUT
+    ],
+)
+
+# Create a test case
+test_case = LLMTestCase(
+    input="When did Washington DC become the capital of the US?",
+    actual_output="Washington DC became the capital in the 18th century.",
+    expected_output="Washington, D.C., became the capital of the United States on July 16, 1790."
+)
+
+# Measure the correctness of the response
+correctness_metric.measure(test_case)
+
+# Print the results
+print(correctness_metric.score)
+print(correctness_metric.reason)
+
+```
 
 # 3. Hallucination Metric
 
