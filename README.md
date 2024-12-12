@@ -10,7 +10,7 @@ Install the `deepeval` library:
 
 ```bash
 !pip install -q deepeval
-
+```
 # Metrics
 
 ## 1. Bias Metric
