@@ -1,4 +1,3 @@
-
 # LLM Evaluation with DeepEval
 
 This project provides a framework for evaluating Large Language Models (LLMs) using structured datasets and the [DeepEval](https://github.com/confident-ai/deepeval) library. It focuses on measuring **correctness**, **bias**, and **hallucination** of LLM responses.
@@ -71,10 +70,8 @@ pytest
 ```
 This runs test_deepeval.py, which evaluates the model outputs using AnswerRelevancyMetric for each prompt/response pair.
 
-📝 Example Output
-yaml
-Copy
-Edit
+📝 Example Output (main.py)
+```
 --- Correctness Evaluation ---
 [1] Score: 0.24 | Reason: Correct, but too sarcastic
 [2] Score: 0.25 | Reason: Factual, but verbose
@@ -86,3 +83,10 @@ Edit
 --- Hallucination Evaluation ---
 [1] Score: 0.00 | Perfect context alignment
 [2] Score: 0.00 | No hallucinations
+```
+
+📝 Example Output (test_deepeval.py)
+```
+FAILED test_llm_answer_relevancy[Prompt: What is the capital of Germany?]
+AssertionError: Metrics: Answer Relevancy (score: 0.18 < threshold 0.7)
+```
